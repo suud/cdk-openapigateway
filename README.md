@@ -1,6 +1,11 @@
 # cdk-openapigatewayv2
 > AWS CDK Construct that creates an API Gateway v2 based on a parameterized OpenApi JSON Document.
 
+![PyPI](https://img.shields.io/pypi/v/openapigatewayv2)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/openapigatewayv2)
+![PyPI - License](https://img.shields.io/pypi/l/openapigatewayv2)
+
+
 ## Installation
 
 ```sh
