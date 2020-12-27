@@ -13,41 +13,70 @@ pip install openapigatewayv2
 
 *openapi.json:*
 ```json
-... "${API_LAMBDA_ARN}"
+[...]
+  "paths": {
+    "/pets": {
+      "get": {
+        "summary": "List all pets",
+        "responses": {
+          [...]
+        },
+        "x-amazon-apigateway-integration": {
+          "uri": "${API_LAMBDA_ARN}",
+          "type": "AWS_PROXY",
+          "httpMethod": "POST",
+          "connectionType": "INTERNET",
+          "payloadFormatVersion": "2.0"
+        },
+        "x-amazon-apigateway-request-validator": {
+          "validateRequestBody": true,
+          "validateRequestParameters": true
+        }
+      }
+    }
+  },
+[...]
 ```
 
+*stack.py:*
 ```python
-from aws_cdk import aws_iam as iam, aws_lambda as _lambda
+from aws_cdk import core, aws_iam as iam, aws_lambda as _lambda
 from openapigatewayv2 import OpenApiGateway
 
-api_lambda = ...
 
-# ${<key>} in openapi_json_path will be replaced by <value>
-params_to_replace = {"API_LAMBDA_ARN": api_lambda.function_arn}
-openapi = OpenApiGateway(
-    self,
-    "OpenAPI Gateway",
-    openapi_json_path="openapi.json",
-    param_value_dict=params_to_replace,
-    fail_on_warnings=True,
-)
+class OpenApiStack(core.Stack):
+    def __init__(
+        self, scope: core.Construct, construct_id: str, **kwargs
+    ) -> None:
+        super().__init__(scope, construct_id, **kwargs)
 
-# get createad httpApi resource
-http_api = openapi.http_api
+        # function that handles api request(s)
+        api_lambda = _lambda.Function([...])
 
-http_api_arn = (
-    f"arn:{scope.partition}:execute-api:"
-    f"{http_api.env.region}:{http_api.env.account}:"
-    f"{http_api.http_api_id}/*/*/*"
-)
+        # create api from openapi document and replace params
+        openapi = OpenApiGateway(
+            self,
+            "OpenAPI Gateway",
+            openapi_json_path="openapi.json",
+            param_value_dict={"API_LAMBDA_ARN": api_lambda.function_arn},
+            fail_on_warnings=True,
+        )
 
-# grant api gateway permission to invoke lambda function
-api_lambda.add_permission(
-        f"Invoke By {http_api.id} Permission",
-        principal=iam.ServicePrincipal("apigateway.amazonaws.com"),
-        action="lambda:InvokeFunction",
-        source_arn=http_api_arn,
-)
+        # get arn of createad HttpApi resource
+        http_api = openapi.http_api
+        http_api_arn = (
+            f"arn:{self.partition}:execute-api:"
+            f"{http_api.env.region}:{http_api.env.account}:"
+            f"{http_api.http_api_id}/*/*/*"
+        )
+
+        # grant HttpApi permission to invoke api lambda function
+        api_lambda.add_permission(
+            f"Invoke By {http_api.node.id} Permission",
+            principal=iam.ServicePrincipal("apigateway.amazonaws.com"),
+            action="lambda:InvokeFunction",
+            source_arn=http_api_arn,
+        )
 ```
 
 ## Development setup
