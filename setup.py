@@ -12,7 +12,7 @@ setup(
     ),
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/suud/openapigatewayv2",
+    url="https://github.com/suud/cdk-openapigatewayv2",
     author="Timo Sutterer",
     author_email="hi@timo-sutterer.de",
     packages=["openapigatewayv2"],
