@@ -81,6 +81,16 @@ class OpenApiStack(core.Stack):
 
 ## Development setup
 
+### optional: use virtualenv
+
+```sh
+# create virtualenv on MacOS and Linux
+python3 -m venv .venv
+# activate virtualenv
+source .venv/bin/activate
+
+### install dependencies
+
 To install this package, along with the tools you need to develop and publish
 it, run the following:
 
