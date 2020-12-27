@@ -88,6 +88,7 @@ class OpenApiStack(core.Stack):
 python3 -m venv .venv
 # activate virtualenv
 source .venv/bin/activate
+```
 
 ### install dependencies
 
