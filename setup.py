@@ -24,9 +24,6 @@ setup(
         "dev": [
             "wheel==0.36.2",
             "twine==3.3.0",
-            "sphinx==3.4.1",
-            "sphinx-rtd-theme==0.5.0",
-            "m2r2==0.2.7",
         ],
     },
     include_package_data=True,
