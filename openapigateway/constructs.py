@@ -60,16 +60,17 @@ class OpenApiGateway(core.Construct):
 
         Examples
         --------
-        # inside an AWS CDK Construct that has
-        # an api_lambda lambda function defined
+        >>> # inside an AWS CDK Construct
+        >>> api_lambda = _lambda()
         >>> OpenApiGateway(
-                self,
-                "OpenAPI Gateway",
-                "openapi.json",
-                {"API_LAMBDA_ARN", api_lambda.function_arn},
-                fail_on_warnings=True
-            )
+        >>>     self,
+        >>>     "OpenAPI Gateway",
+        >>>     "openapi.json",
+        >>>     {"API_LAMBDA_ARN": api_lambda.function_arn},
+        >>>     fail_on_warnings=True
+        >>> )
         """
+
         super().__init__(scope, id, **kwargs)
 
         # read openapi document
