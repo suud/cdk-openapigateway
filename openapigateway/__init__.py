@@ -11,6 +11,6 @@ Usage
 Check out the README.md for some usage examples.
 """
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 from .constructs import OpenApiGateway
