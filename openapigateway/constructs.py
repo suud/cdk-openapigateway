@@ -37,14 +37,14 @@ class OpenApiGateway(core.Construct):
 
         Parameters
         ----------
-        scope: aws_cdk.core.Construct
+        scope : aws_cdk.core.Construct
             The construct within which this construct is defined.
-        id: str
+        id : str
             An identifier that must be uniqie within this scope.
-        openapi_json_path: str
+        openapi_json_path : str
             Path to the OpenAPI 3 JSON Document that serves as
             specification to create the API Gateway HttpApi.
-        param_value_dict: dict, optional
+        param_value_dict : dict, optional
             Dictionary used to replace some parameters in the OpenAPI 3
             JSON Document during build time. This is necessary to
             reference AWS resources that don't yet exist when the OpenAPI
@@ -54,7 +54,7 @@ class OpenApiGateway(core.Construct):
             For example: {"API_LAMBDA_ARN": api_lambda.function_arn} would
             replace `${API_LAMBDA_ARN}` in the OpenAPI Document by the ARN
             of an `api_lambda` lambda function.
-        fail_on_warnings: bool, optional
+        fail_on_warnings : bool, optional
             Wheter to rollback the API creation when a warning is
             encountered, default is False.
 
