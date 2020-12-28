@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="openapigateway",
-    version="0.1.1",
+    version="0.1.2",
     description=(
         "AWS CDK Construct that creates an Amazon API Gateway HttpApi "
         "based on a parameterized OpenAPI 3 Document."
