@@ -87,6 +87,8 @@ class OpenApiStack(core.Stack):
         )
 ```
 
+## [Documentation](https://suud.github.io/cdk-openapigateway)
+
 ## Development setup
 
 ### optional: use virtualenv
