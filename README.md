@@ -104,7 +104,7 @@ To install this package, along with the tools you need to develop and publish
 it, run the following:
 
 ```sh
-pip install -e .[dev]
+pip install -e ".[dev]"
 ```
 
 ## Contributing
