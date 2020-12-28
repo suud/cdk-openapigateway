@@ -24,6 +24,7 @@ setup(
         "dev": [
             "wheel==0.36.2",
             "twine==3.3.0",
+            "bump2version==1.0.1",
         ],
     },
     include_package_data=True,
