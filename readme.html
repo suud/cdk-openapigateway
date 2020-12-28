@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>openapigateway &mdash; openapigateway 0.0.5 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="openapigateway package" href="openapigateway.html" />
+    <link rel="prev" title="Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> openapigateway
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">openapigateway</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example-1-api-backed-by-lambda-function">Example 1: API backed by Lambda Function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#development-setup">Development setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#optional-use-virtualenv">optional: use virtualenv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-dependencies">install dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#contributing">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="openapigateway.html">openapigateway package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">openapigateway</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>openapigateway</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/readme.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="openapigateway">
+<h1>openapigateway<a class="headerlink" href="#openapigateway" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>Create an Amazon API Gateway from an OpenAPI 3 Document.</p>
+</div></blockquote>
+<a class="reference external image-reference" href="https://img.shields.io/pypi/v/openapigateway"><img alt="PyPI" src="https://img.shields.io/pypi/v/openapigateway" /></a>
+<a class="reference external image-reference" href="https://img.shields.io/pypi/pyversions/openapigateway"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/openapigateway" /></a>
+<a class="reference external image-reference" href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg" /></a>
+<a class="reference external image-reference" href="https://img.shields.io/pypi/l/openapigateway"><img alt="PyPI - License" src="https://img.shields.io/pypi/l/openapigateway" /></a>
+<p>AWS CDK Construct that creates an Amazon API Gateway HttpApi based on a
+parameterized OpenAPI 3 Document.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install openapigateway
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example-1-api-backed-by-lambda-function">
+<h3>Example 1: API backed by Lambda Function<a class="headerlink" href="#example-1-api-backed-by-lambda-function" title="Permalink to this headline">¶</a></h3>
+<p><em>openapi.json:</em></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>[...]
+  &quot;paths&quot;: {
+    &quot;/pets&quot;: {
+      &quot;get&quot;: {
+        &quot;summary&quot;: &quot;List all pets&quot;,
+        &quot;responses&quot;: {
+          [...]
+        },
+        &quot;x-amazon-apigateway-integration&quot;: {
+          &quot;uri&quot;: &quot;${API_LAMBDA_ARN}&quot;,
+          &quot;type&quot;: &quot;AWS_PROXY&quot;,
+          &quot;httpMethod&quot;: &quot;POST&quot;,
+          &quot;connectionType&quot;: &quot;INTERNET&quot;,
+          &quot;payloadFormatVersion&quot;: &quot;2.0&quot;
+        },
+        &quot;x-amazon-apigateway-request-validator&quot;: {
+          &quot;validateRequestBody&quot;: true,
+          &quot;validateRequestParameters&quot;: true
+        }
+      }
+    }
+  },
+[...]
+</pre></div>
+</div>
+<p><em>open_api_stack.py:</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aws_cdk</span> <span class="kn">import</span> <span class="n">core</span><span class="p">,</span> <span class="n">aws_iam</span> <span class="k">as</span> <span class="n">iam</span><span class="p">,</span> <span class="n">aws_lambda</span> <span class="k">as</span> <span class="n">_lambda</span>
+<span class="kn">from</span> <span class="nn">openapigateway</span> <span class="kn">import</span> <span class="n">OpenApiGateway</span>
+
+
+<span class="k">class</span> <span class="nc">OpenApiStack</span><span class="p">(</span><span class="n">core</span><span class="o">.</span><span class="n">Stack</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">:</span> <span class="n">core</span><span class="o">.</span><span class="n">Construct</span><span class="p">,</span> <span class="n">construct_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="n">construct_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># function that handles api request(s)</span>
+        <span class="n">api_lambda</span> <span class="o">=</span> <span class="n">_lambda</span><span class="o">.</span><span class="n">Function</span><span class="p">([</span><span class="o">...</span><span class="p">])</span>
+
+        <span class="c1"># create api from openapi document and replace params</span>
+        <span class="n">openapi</span> <span class="o">=</span> <span class="n">OpenApiGateway</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="s2">&quot;OpenAPI Gateway&quot;</span><span class="p">,</span>
+            <span class="n">openapi_json_path</span><span class="o">=</span><span class="s2">&quot;openapi.json&quot;</span><span class="p">,</span>
+            <span class="n">param_value_dict</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;API_LAMBDA_ARN&quot;</span><span class="p">:</span> <span class="n">api_lambda</span><span class="o">.</span><span class="n">function_arn</span><span class="p">},</span>
+            <span class="n">fail_on_warnings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># get arn of createad HttpApi resource</span>
+        <span class="n">http_api</span> <span class="o">=</span> <span class="n">openapi</span><span class="o">.</span><span class="n">http_api</span>
+        <span class="n">http_api_arn</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;arn:</span><span class="si">{self.partition}</span><span class="s2">:execute-api:&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{http_api.env.region}</span><span class="s2">:</span><span class="si">{http_api.env.account}</span><span class="s2">:&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{http_api.http_api_id}</span><span class="s2">/*/*/*&quot;</span>
+        <span class="p">)</span>
+
+        <span class="c1"># grant HttpApi permission to invoke api lambda function</span>
+        <span class="n">api_lambda</span><span class="o">.</span><span class="n">add_permission</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Invoke By </span><span class="si">{http_api.node.id}</span><span class="s2"> Permission&quot;</span><span class="p">,</span>
+            <span class="n">principal</span><span class="o">=</span><span class="n">iam</span><span class="o">.</span><span class="n">ServicePrincipal</span><span class="p">(</span><span class="s2">&quot;apigateway.amazonaws.com&quot;</span><span class="p">),</span>
+            <span class="n">action</span><span class="o">=</span><span class="s2">&quot;lambda:InvokeFunction&quot;</span><span class="p">,</span>
+            <span class="n">source_arn</span><span class="o">=</span><span class="n">http_api_arn</span><span class="p">,</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="development-setup">
+<h2>Development setup<a class="headerlink" href="#development-setup" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="optional-use-virtualenv">
+<h3>optional: use virtualenv<a class="headerlink" href="#optional-use-virtualenv" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># create virtualenv on MacOS and Linux</span>
+python3 -m venv .venv
+<span class="c1"># activate virtualenv</span>
+<span class="nb">source</span> .venv/bin/activate
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-dependencies">
+<h3>install dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>To install this package, along with the tools you need to develop and publish
+it, run the following:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install -e <span class="s2">&quot;.[dev]&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/suud/cdk-openapigateway/fork">Fork this repository</a></p></li>
+<li><p>Create your feature branch (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">feature/fooBar</span></code>)</p></li>
+<li><p>Commit your changes (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-am</span> <span class="pre">'Add</span> <span class="pre">some</span> <span class="pre">fooBar'</span></code>)</p></li>
+<li><p>Push to the branch (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">feature/fooBar</span></code>)</p></li>
+<li><p>Create a new Pull Request</p></li>
+</ol>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>MIT</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="openapigateway.html" class="btn btn-neutral float-right" title="openapigateway package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Timo Sutterer
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
