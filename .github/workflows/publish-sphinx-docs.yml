@@ -16,11 +16,6 @@ jobs:
     - uses: ammaraskar/sphinx-action@master
       with:
         docs-folder: "docs/"
-    # Create an artifact of the html output
-    - uses: actions/upload-artifact@v1
-      with:
-        name: DocumentationHTML
-        path: docs/_build/html/
     - name: Commit documentation changes
       run: |
         git clone https://github.com/suud/cdk-openapigateway.git --branch gh-pages --single-branch gh-pages
