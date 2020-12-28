@@ -1,15 +1,27 @@
+"""
+Constructs that facilitate the creation of Amazon API Gateway
+HttpApi Resources from OpenAPI 3 Documents.
+"""
+
 import json
 from aws_cdk import core, aws_apigatewayv2 as apigateway
 
 
 class OpenApiGateway(core.Construct):
-    """AWS CDK Construct that creates an API Gateway v2 based on a
-    parameterized OpenApi JSON Document.
+    """
+    AWS CDK Construct that creates an Amazon API Gateway HttpApi
+    based on a parameterized OpenAPI 3 JSON Document.
     """
 
     @property
     def http_api(self) -> apigateway.HttpApi:
-        """The HttpApi created by this construct"""
+        """The HttpApi created by this construct.
+
+        Returns
+        -------
+        aws_cdk.aws_apigatewayv2.HttpApi
+            HttpApi resource that has been created by this construct.
+        """
         return self._http_api
 
     def __init__(
@@ -17,11 +29,22 @@ class OpenApiGateway(core.Construct):
         scope: core.Construct,
         id: str,
         openapi_json_path: str,
-        param_value_dict: dict,
+        param_value_dict: dict = {},
         fail_on_warnings: bool = False,
         **kwargs,
     ):
-        """"""
+        """Create HttpApi from parameterized OpenAPI 3 JSON Document.
+
+        Parameters
+        ----------
+        scope: aws_cdk.core.Construct
+            The construct within which this construct is defined.
+        id: str
+            An identifier that must be uniqie within this scope.
+        openapi_json_path: str
+            Path to the OpenAPI 3 JSON Document that serves as
+            specification to create the API Gateway.
+        """
         super().__init__(scope, id, **kwargs)
 
         # read openapi document

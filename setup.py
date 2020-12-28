@@ -4,18 +4,18 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name="openapigatewayv2",
+    name="openapigateway",
     version="0.0.2",
     description=(
-        "AWS CDK Construct that creates an API Gateway v2 based on a "
-        "parameterized OpenApi JSON Document."
+        "AWS CDK Construct that creates an Amazon API Gateway HttpApi "
+        "based on a parameterized OpenAPI 3 Document."
     ),
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/suud/cdk-openapigatewayv2",
+    url="https://github.com/suud/cdk-openapigateway",
     author="Timo Sutterer",
     author_email="hi@timo-sutterer.de",
-    packages=["openapigatewayv2"],
+    packages=["openapigateway"],
     install_requires=[
         "aws-cdk.core>=1.79.0",
         "aws-cdk.aws-apigatewayv2>=1.79.0",

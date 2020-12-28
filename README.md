@@ -1,15 +1,17 @@
-# cdk-openapigatewayv2
-> AWS CDK Construct that creates an API Gateway v2 based on a parameterized OpenApi JSON Document.
+# cdk-openapigateway
+> Create an Amazon API Gateway from an OpenAPI 3 Document.
 
-![PyPI](https://img.shields.io/pypi/v/openapigatewayv2)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/openapigatewayv2)
-![PyPI - License](https://img.shields.io/pypi/l/openapigatewayv2)
+![PyPI](https://img.shields.io/pypi/v/openapigateway)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/openapigateway)
+![PyPI - License](https://img.shields.io/pypi/l/openapigateway)
 
+AWS CDK Construct that creates an Amazon API Gateway HttpApi based on a
+parameterized OpenAPI 3 Document.
 
 ## Installation
 
 ```sh
-pip install openapigatewayv2
+pip install openapigateway
 ```
 
 ## Usage
@@ -46,7 +48,7 @@ pip install openapigatewayv2
 *stack.py:*
 ```python
 from aws_cdk import core, aws_iam as iam, aws_lambda as _lambda
-from openapigatewayv2 import OpenApiGateway
+from openapigateway import OpenApiGateway
 
 
 class OpenApiStack(core.Stack):
@@ -106,7 +108,7 @@ pip install -e .[dev]
 
 ## Contributing
 
-1. [Fork this repository](https://github.com/suud/cdk-openapigatewayv2/fork)
+1. [Fork this repository](https://github.com/suud/cdk-openapigateway/fork)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
