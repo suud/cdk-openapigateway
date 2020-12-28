@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>openapigateway &mdash; openapigateway 0.1.2 documentation</title>
+  <title>openapigateway &mdash; openapigateway 0.1.4 documentation</title>
   
 
   
@@ -237,14 +237,14 @@ parameterized OpenAPI 3 Document.</p>
         <span class="c1"># get arn of createad HttpApi resource</span>
         <span class="n">http_api</span> <span class="o">=</span> <span class="n">openapi</span><span class="o">.</span><span class="n">http_api</span>
         <span class="n">http_api_arn</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;arn:</span><span class="si">{self.partition}</span><span class="s2">:execute-api:&quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{http_api.env.region}</span><span class="s2">:</span><span class="si">{http_api.env.account}</span><span class="s2">:&quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{http_api.http_api_id}</span><span class="s2">/*/*/*&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;arn:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">partition</span><span class="si">}</span><span class="s2">:execute-api:&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">http_api</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">region</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">http_api</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">account</span><span class="si">}</span><span class="s2">:&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">http_api</span><span class="o">.</span><span class="n">http_api_id</span><span class="si">}</span><span class="s2">/*/*/*&quot;</span>
         <span class="p">)</span>
 
         <span class="c1"># grant HttpApi permission to invoke api lambda function</span>
         <span class="n">api_lambda</span><span class="o">.</span><span class="n">add_permission</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Invoke By </span><span class="si">{http_api.node.id}</span><span class="s2"> Permission&quot;</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">&quot;Invoke By </span><span class="si">{</span><span class="n">http_api</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2"> Permission&quot;</span><span class="p">,</span>
             <span class="n">principal</span><span class="o">=</span><span class="n">iam</span><span class="o">.</span><span class="n">ServicePrincipal</span><span class="p">(</span><span class="s2">&quot;apigateway.amazonaws.com&quot;</span><span class="p">),</span>
             <span class="n">action</span><span class="o">=</span><span class="s2">&quot;lambda:InvokeFunction&quot;</span><span class="p">,</span>
             <span class="n">source_arn</span><span class="o">=</span><span class="n">http_api_arn</span><span class="p">,</span>
