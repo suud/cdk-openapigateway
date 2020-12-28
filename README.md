@@ -1,4 +1,4 @@
-# cdk-openapigateway
+# openapigateway
 > Create an Amazon API Gateway from an OpenAPI 3 Document.
 
 ![PyPI](https://img.shields.io/pypi/v/openapigateway)
@@ -45,7 +45,7 @@ pip install openapigateway
 [...]
 ```
 
-*stack.py:*
+*open_api_stack.py:*
 ```python
 from aws_cdk import core, aws_iam as iam, aws_lambda as _lambda
 from openapigateway import OpenApiGateway

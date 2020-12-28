@@ -43,7 +43,32 @@ class OpenApiGateway(core.Construct):
             An identifier that must be uniqie within this scope.
         openapi_json_path: str
             Path to the OpenAPI 3 JSON Document that serves as
-            specification to create the API Gateway.
+            specification to create the API Gateway HttpApi.
+        param_value_dict: dict, optional
+            Dictionary used to replace some parameters in the OpenAPI 3
+            JSON Document during build time. This is necessary to
+            reference AWS resources that don't yet exist when the OpenAPI
+            Document is written.
+            `${<key>}` in the `openapi_json` gets replaced by `<value>`
+            from this dictionary.
+            For example: {"API_LAMBDA_ARN": api_lambda.function_arn} would
+            replace `${API_LAMBDA_ARN}` in the OpenAPI Document by the ARN
+            of an `api_lambda` lambda function.
+        fail_on_warnings: bool, optional
+            Wheter to rollback the API creation when a warning is
+            encountered, default is False.
+
+        Examples
+        --------
+        # inside an AWS CDK Construct that has
+        # an api_lambda lambda function defined
+        >>> OpenApiGateway(
+                self,
+                "OpenAPI Gateway",
+                "openapi.json",
+                {"API_LAMBDA_ARN", api_lambda.function_arn},
+                fail_on_warnings=True
+            )
         """
         super().__init__(scope, id, **kwargs)
 
@@ -55,14 +80,13 @@ class OpenApiGateway(core.Construct):
             content = content.replace("${" + f"{parameter}" + "}", value)
         openapi = json.loads(content)
 
-        # create api gateway based on openapi document
         self._http_api = apigateway.HttpApi(self, id)
-        # escape hatches to work around missing cdk construct feature
+        # escape hatches to work around missing cdk construct features
         http_api_cfn: apigateway.CfnApi = self._http_api.node.default_child
         http_api_cfn.add_property_override("FailOnWarnings", fail_on_warnings)
         http_api_cfn.add_property_override("Body", openapi)
         http_api_cfn.add_property_deletion_override("Name")
         http_api_cfn.add_property_deletion_override("ProtocolType")
 
-        # output api gateway v2 url
+        # output http api url
         core.CfnOutput(self, "HTTP API URL", value=self._http_api.url)
