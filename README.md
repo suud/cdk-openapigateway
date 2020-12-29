@@ -19,30 +19,24 @@ pip install openapigateway
 
 ### Example 1: API backed by Lambda Function
 
-*openapi.json:*
-```json
+*openapi.yaml:*
+```yaml
 [...]
-  "paths": {
-    "/pets": {
-      "get": {
-        "summary": "List all pets",
-        "responses": {
-          [...]
-        },
-        "x-amazon-apigateway-integration": {
-          "uri": "${API_LAMBDA_ARN}",
-          "type": "AWS_PROXY",
-          "httpMethod": "POST",
-          "connectionType": "INTERNET",
-          "payloadFormatVersion": "2.0"
-        },
-        "x-amazon-apigateway-request-validator": {
-          "validateRequestBody": true,
-          "validateRequestParameters": true
-        }
-      }
-    }
-  },
+paths:
+  /pets:
+    get:
+      summary: List all pets
+      responses:
+        [...]
+      x-amazon-apigateway-integration:
+        uri: "${API_LAMBDA_ARN}"
+        type: "AWS_PROXY"
+        httpMethod: "POST"
+        connectionType: "INTERNET"
+        payloadFormatVersion: "2.0"
+      x-amazon-apigateway-request-validator:
+        validateRequestBody: true
+        validateRequestParameters: true
 [...]
 ```
 
@@ -65,7 +59,7 @@ class OpenApiStack(core.Stack):
         openapi = OpenApiGateway(
             self,
             "OpenAPI Gateway",
-            openapi_path="openapi.json",
+            openapi_path="openapi.yaml",
             param_value_dict={"API_LAMBDA_ARN": api_lambda.function_arn},
             fail_on_warnings=True,
         )
