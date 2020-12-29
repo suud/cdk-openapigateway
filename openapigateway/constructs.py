@@ -90,4 +90,4 @@ class OpenApiGateway(core.Construct):
         http_api_cfn.add_property_deletion_override("ProtocolType")
 
         # output http api url
-        core.CfnOutput(self, "HTTP API URL", value=self._http_api.url)
+        core.CfnOutput(self, "HttpApiUrl", value=self._http_api.url)
