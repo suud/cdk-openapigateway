@@ -4,13 +4,14 @@ HttpApi Resources from OpenAPI 3 Documents.
 """
 
 import json
+import yaml
 from aws_cdk import core, aws_apigatewayv2 as apigateway
 
 
 class OpenApiGateway(core.Construct):
     """
     AWS CDK Construct that creates an Amazon API Gateway HttpApi
-    based on a parameterized OpenAPI 3 JSON Document.
+    based on a parameterized OpenAPI 3 Document.
     """
 
     @property
@@ -28,12 +29,12 @@ class OpenApiGateway(core.Construct):
         self,
         scope: core.Construct,
         id: str,
-        openapi_json_path: str,
+        openapi_path: str,
         param_value_dict: dict = {},
         fail_on_warnings: bool = False,
         **kwargs,
     ):
-        """Create HttpApi from parameterized OpenAPI 3 JSON Document.
+        """Create HttpApi from parameterized OpenAPI 3 Document.
 
         Parameters
         ----------
@@ -41,16 +42,16 @@ class OpenApiGateway(core.Construct):
             The construct within which this construct is defined.
         id : str
             An identifier that must be uniqie within this scope.
-        openapi_json_path : str
-            Path to the OpenAPI 3 JSON Document that serves as
+        openapi_path : str
+            Path to the OpenAPI 3 Document that serves as
             specification to create the API Gateway HttpApi.
+            JSON and YAML files are supported.
         param_value_dict : dict, optional
             Dictionary used to replace some parameters in the OpenAPI 3
-            JSON Document during build time. This is necessary to
-            reference AWS resources that don't yet exist when the OpenAPI
-            Document is written.
-            `${<key>}` in the `openapi_json` gets replaced by `<value>`
-            from this dictionary.
+            Document during build time. This is necessary to reference
+            AWS resources that don't yet exist when the OpenAPI Document
+            is written. `${<key>}` in the OpenAPI Document gets replaced
+            by `<value>` from this dictionary.
             For example: {"API_LAMBDA_ARN": api_lambda.function_arn} would
             replace `${API_LAMBDA_ARN}` in the OpenAPI Document by the ARN
             of an `api_lambda` lambda function.
@@ -74,13 +75,16 @@ class OpenApiGateway(core.Construct):
         super().__init__(scope, id, **kwargs)
 
         # read openapi document
-        with open(openapi_json_path, "r") as json_file:
-            content = json_file.read()
+        with open(openapi_path, "r") as openapi_file:
+            openapi_str = openapi_file.read()
         # replace parameters
         for parameter, value in param_value_dict.items():
-            content = content.replace("${" + f"{parameter}" + "}", value)
-        openapi = json.loads(content)
+            openapi_str = openapi_str.replace("${" + f"{parameter}" + "}", value)
 
+        # deserialize string
+        openapi = json_or_yaml_to_dict(openapi_str)
+
+        # create httpApi
         self._http_api = apigateway.HttpApi(self, id)
         # escape hatches to work around missing cdk construct features
         http_api_cfn: apigateway.CfnApi = self._http_api.node.default_child
@@ -91,3 +95,34 @@ class OpenApiGateway(core.Construct):
 
         # output http api url
         core.CfnOutput(self, "HttpApiUrl", value=self._http_api.url)
+
+
+def json_or_yaml_to_dict(string: str) -> dict:
+    """Parse JSON/YAML string to dict.
+
+    Parameters
+    ----------
+    string : str
+        String containing a valid JSON or YAML document.
+
+    Returns
+    -------
+    dict
+        Dictionary of the parsed string.
+
+    Raises
+    ------
+    ValueError
+        If the string can neither be parsed as JSON nor YAML.
+    """
+    try:
+        return json.loads(string)
+    except Exception:
+        pass
+
+    try:
+        return yaml.safe_load(string)
+    except Exception:
+        pass
+
+    raise ValueError("Failed parsing string as JSON or YAML")

@@ -17,6 +17,7 @@ setup(
     author_email="hi@timo-sutterer.de",
     packages=["openapigateway"],
     install_requires=[
+        "PyYAML",
         "aws-cdk.core>=1.79.0",
         "aws-cdk.aws-apigatewayv2>=1.79.0",
     ],

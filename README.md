@@ -65,7 +65,7 @@ class OpenApiStack(core.Stack):
         openapi = OpenApiGateway(
             self,
             "OpenAPI Gateway",
-            openapi_json_path="openapi.json",
+            openapi_path="openapi.json",
             param_value_dict={"API_LAMBDA_ARN": api_lambda.function_arn},
             fail_on_warnings=True,
         )
