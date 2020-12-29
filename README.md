@@ -73,7 +73,7 @@ class OpenApiStack(core.Stack):
         )
 ```
 
-## [Documentation](https://suud.github.io/cdk-openapigateway)
+## [Documentation](https://suud.github.io/cdk-openapigateway/openapigateway.html)
 
 ## Development setup
 
