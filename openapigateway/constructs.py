@@ -64,22 +64,23 @@ class OpenApiGateway(core.Construct):
             AWS resources that don't yet exist when the OpenAPI Document
             is written. `${<key>}` in the OpenAPI Document gets replaced
             by `<value>` from this dictionary.
-            For example: {"API_LAMBDA_ARN": api_lambda.function_arn} would
-            replace `${API_LAMBDA_ARN}` in the OpenAPI Document by the ARN
-            of an `api_lambda` lambda function.
+            For example: {"API_LAMBDA_ARN": api_lambda.function_arn}
+            would replace `${API_LAMBDA_ARN}` in the OpenAPI Document
+            by the ARN of an `api_lambda` lambda function.
         fail_on_warnings : bool, optional
             Wheter to rollback the API creation when a warning is
             encountered, default is False.
 
         Examples
         --------
-        >>> # inside an AWS CDK Construct
         >>> api_lambda = _lambda()
         >>> OpenApiGateway(
         >>>     self,
         >>>     "OpenAPI Gateway",
-        >>>     "openapi.json",
-        >>>     {"API_LAMBDA_ARN": api_lambda.function_arn},
+        >>>     openapi_path="openapi.json",
+        >>>     param_value_dict={
+        >>>         "API_LAMBDA_ARN": api_lambda.function_arn
+        >>>     },
         >>>     fail_on_warnings=True
         >>> )
         """
