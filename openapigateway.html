@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>openapigateway package &mdash; openapigateway 0.2.0 documentation</title>
+  <title>openapigateway package &mdash; openapigateway 0.2.1 documentation</title>
   
 
   
@@ -185,22 +185,23 @@ Document during build time. This is necessary to reference
 AWS resources that don’t yet exist when the OpenAPI Document
 is written. <cite>${&lt;key&gt;}</cite> in the OpenAPI Document gets replaced
 by <cite>&lt;value&gt;</cite> from this dictionary.
-For example: {“API_LAMBDA_ARN”: api_lambda.function_arn} would
-replace <cite>${API_LAMBDA_ARN}</cite> in the OpenAPI Document by the ARN
-of an <cite>api_lambda</cite> lambda function.</p></li>
+For example: {“API_LAMBDA_ARN”: api_lambda.function_arn}
+would replace <cite>${API_LAMBDA_ARN}</cite> in the OpenAPI Document
+by the ARN of an <cite>api_lambda</cite> lambda function.</p></li>
 <li><p><strong>fail_on_warnings</strong> (<em>bool</em><em>, </em><em>optional</em>) – Wheter to rollback the API creation when a warning is
 encountered, default is False.</p></li>
 </ul>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># inside an AWS CDK Construct</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">api_lambda</span> <span class="o">=</span> <span class="n">_lambda</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">api_lambda</span> <span class="o">=</span> <span class="n">_lambda</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">OpenApiGateway</span><span class="p">(</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="bp">self</span><span class="p">,</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="s2">&quot;OpenAPI Gateway&quot;</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="s2">&quot;openapi.json&quot;</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="p">{</span><span class="s2">&quot;API_LAMBDA_ARN&quot;</span><span class="p">:</span> <span class="n">api_lambda</span><span class="o">.</span><span class="n">function_arn</span><span class="p">},</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">openapi_path</span><span class="o">=</span><span class="s2">&quot;openapi.json&quot;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">param_value_dict</span><span class="o">=</span><span class="p">{</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="s2">&quot;API_LAMBDA_ARN&quot;</span><span class="p">:</span> <span class="n">api_lambda</span><span class="o">.</span><span class="n">function_arn</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="p">},</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">fail_on_warnings</span><span class="o">=</span><span class="kc">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
 </pre></div>
@@ -215,6 +216,21 @@ encountered, default is False.</p></li>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>aws_cdk.aws_apigatewayv2.HttpApi</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="openapigateway.constructs.OpenApiGateway.http_api_arn">
+<em class="property">property </em><code class="sig-name descname">http_api_arn</code><a class="headerlink" href="#openapigateway.constructs.OpenApiGateway.http_api_arn" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ARN of the HttpApi created by this construct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>ARN of the HttpApi resource that has been created by this
+construct.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
