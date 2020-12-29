@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>openapigateway &mdash; openapigateway 0.1.4 documentation</title>
+  <title>openapigateway &mdash; openapigateway 0.2.0 documentation</title>
   
 
   
@@ -185,30 +185,24 @@ parameterized OpenAPI 3 Document.</p>
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="example-1-api-backed-by-lambda-function">
 <h3>Example 1: API backed by Lambda Function<a class="headerlink" href="#example-1-api-backed-by-lambda-function" title="Permalink to this headline">¶</a></h3>
-<p><em>openapi.json:</em></p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>[...]
-  &quot;paths&quot;: {
-    &quot;/pets&quot;: {
-      &quot;get&quot;: {
-        &quot;summary&quot;: &quot;List all pets&quot;,
-        &quot;responses&quot;: {
-          [...]
-        },
-        &quot;x-amazon-apigateway-integration&quot;: {
-          &quot;uri&quot;: &quot;${API_LAMBDA_ARN}&quot;,
-          &quot;type&quot;: &quot;AWS_PROXY&quot;,
-          &quot;httpMethod&quot;: &quot;POST&quot;,
-          &quot;connectionType&quot;: &quot;INTERNET&quot;,
-          &quot;payloadFormatVersion&quot;: &quot;2.0&quot;
-        },
-        &quot;x-amazon-apigateway-request-validator&quot;: {
-          &quot;validateRequestBody&quot;: true,
-          &quot;validateRequestParameters&quot;: true
-        }
-      }
-    }
-  },
-[...]
+<p><em>openapi.yaml:</em></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span>
+<span class="nt">paths</span><span class="p">:</span>
+  <span class="nt">/pets</span><span class="p">:</span>
+    <span class="nt">get</span><span class="p">:</span>
+      <span class="nt">summary</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">List all pets</span>
+      <span class="nt">responses</span><span class="p">:</span>
+        <span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span>
+      <span class="nt">x-amazon-apigateway-integration</span><span class="p">:</span>
+        <span class="nt">uri</span><span class="p">:</span> <span class="s">&quot;${API_LAMBDA_ARN}&quot;</span>
+        <span class="nt">type</span><span class="p">:</span> <span class="s">&quot;AWS_PROXY&quot;</span>
+        <span class="nt">httpMethod</span><span class="p">:</span> <span class="s">&quot;POST&quot;</span>
+        <span class="nt">connectionType</span><span class="p">:</span> <span class="s">&quot;INTERNET&quot;</span>
+        <span class="nt">payloadFormatVersion</span><span class="p">:</span> <span class="s">&quot;2.0&quot;</span>
+      <span class="nt">x-amazon-apigateway-request-validator</span><span class="p">:</span>
+        <span class="nt">validateRequestBody</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+        <span class="nt">validateRequestParameters</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 <p><em>open_api_stack.py:</em></p>
@@ -229,7 +223,7 @@ parameterized OpenAPI 3 Document.</p>
         <span class="n">openapi</span> <span class="o">=</span> <span class="n">OpenApiGateway</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="s2">&quot;OpenAPI Gateway&quot;</span><span class="p">,</span>
-            <span class="n">openapi_json_path</span><span class="o">=</span><span class="s2">&quot;openapi.json&quot;</span><span class="p">,</span>
+            <span class="n">openapi_path</span><span class="o">=</span><span class="s2">&quot;openapi.yaml&quot;</span><span class="p">,</span>
             <span class="n">param_value_dict</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;API_LAMBDA_ARN&quot;</span><span class="p">:</span> <span class="n">api_lambda</span><span class="o">.</span><span class="n">function_arn</span><span class="p">},</span>
             <span class="n">fail_on_warnings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="p">)</span>

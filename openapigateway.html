@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>openapigateway package &mdash; openapigateway 0.1.4 documentation</title>
+  <title>openapigateway package &mdash; openapigateway 0.2.0 documentation</title>
   
 
   
@@ -170,21 +170,21 @@ HttpApi Resources from OpenAPI 3 Documents.</p>
 <em class="property">class </em><code class="sig-prename descclassname">openapigateway.constructs.</code><code class="sig-name descname">OpenApiGateway</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapigateway.constructs.OpenApiGateway" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">aws_cdk.core.Construct</span></code></p>
 <p>AWS CDK Construct that creates an Amazon API Gateway HttpApi
-based on a parameterized OpenAPI 3 JSON Document.</p>
-<p>Create HttpApi from parameterized OpenAPI 3 JSON Document.</p>
+based on a parameterized OpenAPI 3 Document.</p>
+<p>Create HttpApi from parameterized OpenAPI 3 Document.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scope</strong> (<em>aws_cdk.core.Construct</em>) – The construct within which this construct is defined.</p></li>
 <li><p><strong>id</strong> (<em>str</em>) – An identifier that must be uniqie within this scope.</p></li>
-<li><p><strong>openapi_json_path</strong> (<em>str</em>) – Path to the OpenAPI 3 JSON Document that serves as
-specification to create the API Gateway HttpApi.</p></li>
+<li><p><strong>openapi_path</strong> (<em>str</em>) – Path to the OpenAPI 3 Document that serves as
+specification to create the API Gateway HttpApi.
+JSON and YAML files are supported.</p></li>
 <li><p><strong>param_value_dict</strong> (<em>dict</em><em>, </em><em>optional</em>) – Dictionary used to replace some parameters in the OpenAPI 3
-JSON Document during build time. This is necessary to
-reference AWS resources that don’t yet exist when the OpenAPI
-Document is written.
-<cite>${&lt;key&gt;}</cite> in the <cite>openapi_json</cite> gets replaced by <cite>&lt;value&gt;</cite>
-from this dictionary.
+Document during build time. This is necessary to reference
+AWS resources that don’t yet exist when the OpenAPI Document
+is written. <cite>${&lt;key&gt;}</cite> in the OpenAPI Document gets replaced
+by <cite>&lt;value&gt;</cite> from this dictionary.
 For example: {“API_LAMBDA_ARN”: api_lambda.function_arn} would
 replace <cite>${API_LAMBDA_ARN}</cite> in the OpenAPI Document by the ARN
 of an <cite>api_lambda</cite> lambda function.</p></li>
@@ -219,6 +219,26 @@ encountered, default is False.</p></li>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt id="openapigateway.constructs.json_or_yaml_to_dict">
+<code class="sig-prename descclassname">openapigateway.constructs.</code><code class="sig-name descname">json_or_yaml_to_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">string</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#openapigateway.constructs.json_or_yaml_to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse JSON/YAML string to dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>string</strong> (<em>str</em>) – String containing a valid JSON or YAML document.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dictionary of the parsed string.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the string can neither be parsed as JSON nor YAML.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
