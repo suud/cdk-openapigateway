@@ -25,6 +25,18 @@ class OpenApiGateway(core.Construct):
         """
         return self._http_api
 
+    @property
+    def http_api_arn(self) -> str:
+        """The ARN of the HttpApi created by this construct.
+
+        Returns
+        -------
+        str
+            ARN of the HttpApi resource that has been created by this
+            construct.
+        """
+        return self._http_api_arn
+
     def __init__(
         self,
         scope: core.Construct,
@@ -92,6 +104,13 @@ class OpenApiGateway(core.Construct):
         http_api_cfn.add_property_override("Body", openapi)
         http_api_cfn.add_property_deletion_override("Name")
         http_api_cfn.add_property_deletion_override("ProtocolType")
+
+        # construct arn of httpApi
+        self._http_api_arn = (
+            f"arn:{scope.partition}:execute-api:"
+            f"{self._http_api.env.region}:{self._http_api.env.account}:"
+            f"{self._http_api.http_api_id}/*/*/*"
+        )
 
         # output http api url
         core.CfnOutput(self, "HttpApiUrl", value=self._http_api.url)

@@ -64,20 +64,12 @@ class OpenApiStack(core.Stack):
             fail_on_warnings=True,
         )
 
-        # get arn of createad HttpApi resource
-        http_api = openapi.http_api
-        http_api_arn = (
-            f"arn:{self.partition}:execute-api:"
-            f"{http_api.env.region}:{http_api.env.account}:"
-            f"{http_api.http_api_id}/*/*/*"
-        )
-
         # grant HttpApi permission to invoke api lambda function
         api_lambda.add_permission(
-            f"Invoke By {http_api.node.id} Permission",
+            f"Invoke By {openapi.http_api.node.id} Permission",
             principal=iam.ServicePrincipal("apigateway.amazonaws.com"),
             action="lambda:InvokeFunction",
-            source_arn=http_api_arn,
+            source_arn=openapi.http_api_arn,
         )
 ```
 
